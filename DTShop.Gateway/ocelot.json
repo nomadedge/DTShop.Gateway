@@ -1,0 +1,133 @@
+{
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Type": "Eureka"
+    }
+  },
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/warehouse/items",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/items",
+      "ServiceName": "WarehouseService",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/warehouse/items/{number}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/items/{number}",
+      "ServiceName": "WarehouseService",
+      "UpstreamHttpMethod": [ "Get", "Put" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/orders",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/orders",
+      "ServiceName": "OrderService",
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/orders/{number}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/orders/{number}",
+      "ServiceName": "OrderService",
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/orders/filter/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/orders/filter/{everything}",
+      "ServiceName": "OrderService",
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      },
+      "Key": "OrdersFilter"
+    },
+    {
+      "DownstreamPathTemplate": "/api/orders/{number}/item",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/orders/{number}/item",
+      "ServiceName": "OrderService",
+      "UpstreamHttpMethod": [ "Post" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/orders/{number}/status/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/orders/{number}/status/{everything}",
+      "ServiceName": "OrderService",
+      "UpstreamHttpMethod": [ "Put" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/payments/filter/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/payments/filter/{everything}",
+      "ServiceName": "PaymentService",
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 4000
+      },
+      "Key": "PaymentsFilter"
+    },
+    {
+      "DownstreamPathTemplate": "/api/payments/{number}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/payments/{number}",
+      "ServiceName": "PaymentService",
+      "UpstreamHttpMethod": [ "Put" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 20000,
+        "TimeoutValue": 8000
+      }
+    }
+  ],
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "OrdersFilter",
+        "PaymentsFilter"
+      ],
+      "UpstreamPathTemplate": "/api/filter/{everything}"
+    }
+  ]
+}
