@@ -18,6 +18,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
     {
@@ -30,6 +33,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
 
@@ -43,6 +49,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
     {
@@ -55,6 +64,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
     {
@@ -68,7 +80,10 @@
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
       },
-      "Key": "OrdersFilter"
+      "Key": "OrdersFilter",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/orders/{number}/item",
@@ -80,6 +95,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
     {
@@ -92,6 +110,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     },
 
@@ -106,7 +127,10 @@
         "DurationOfBreak": 10000,
         "TimeoutValue": 4000
       },
-      "Key": "PaymentsFilter"
+      "Key": "PaymentsFilter",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/payments/{number}",
@@ -118,6 +142,9 @@
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 20000,
         "TimeoutValue": 8000
+      },
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
       }
     }
   ],
